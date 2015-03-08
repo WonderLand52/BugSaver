@@ -4,6 +4,8 @@ import com.rudenkoInc.dao.exception.NoSuchRecordException;
 import journals.Journal;
 import recordImpl.Record;
 
+import java.util.List;
+
 public interface RecordDao {
 
     public Journal getAllRecords();

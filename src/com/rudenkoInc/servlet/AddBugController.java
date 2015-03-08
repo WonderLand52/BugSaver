@@ -19,20 +19,14 @@ import java.text.ParseException;
 
 public class AddBugController extends HttpServlet {
 
-
-
     TransactionManager tm;
-
-    RecordDao recDao = new RecordJdbcDao();
-
-    StringBuffer sb;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Record rec1 = null;
+        Record rec = null;
         try {
-            rec1 = ServletUtils.getRecordFromServlet(req);
+            rec = ServletUtils.getRecordFromServlet(req);
 
         } catch (InvalidStringRecordException e) {
             System.out.println("Invalid String Record!");
@@ -45,11 +39,11 @@ public class AddBugController extends HttpServlet {
         tm = new TransactionManagerImpl();
 
         try {
-            final Record finalRec = rec1;
+            final Record finalRec = rec;
             tm.doInTransaction(new UnitOfWork<Void,Exception>() {
                 @Override
                 public Void doInTx() throws Exception {
-                    recDao.addRecord(finalRec);
+                    new RecordJdbcDao().addRecord(finalRec);
                     return null;
                 }
             });

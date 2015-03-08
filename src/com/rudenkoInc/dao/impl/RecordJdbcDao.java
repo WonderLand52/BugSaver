@@ -11,8 +11,10 @@ import recordImpl.Record;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class RecordJdbcDao implements RecordDao {
 
@@ -38,7 +40,7 @@ public class RecordJdbcDao implements RecordDao {
 
     @Override
     public Journal getAllRecords() {
-        Journal journal = null;
+        Journal records = new CollectionJournal();
         Statement stmt;
         ResultSet rs;
         try {
@@ -50,8 +52,7 @@ public class RecordJdbcDao implements RecordDao {
                 cal.setTime(rs.getDate(COLUMN_LABEL_DATE));
                 Importance imp = RecordUtils.parseImportance(rs.getString(COLUMN_LABEL_IMPORTANCE));
 
-                journal = new CollectionJournal();
-                journal.add(new Record(cal,
+                records.add(new Record(cal,
                         imp,
                         rs.getString(COLUMN_LABEL_SOURCE),
                         rs.getString(COLUMN_LABEL_MESSAGE)));
@@ -62,7 +63,7 @@ public class RecordJdbcDao implements RecordDao {
             e.printStackTrace();
         }
 
-        return journal;
+        return records;
     }
 
     @Override
@@ -86,6 +87,7 @@ public class RecordJdbcDao implements RecordDao {
                         imp,
                         rs.getString(COLUMN_LABEL_SOURCE),
                         rs.getString(COLUMN_LABEL_MESSAGE)));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

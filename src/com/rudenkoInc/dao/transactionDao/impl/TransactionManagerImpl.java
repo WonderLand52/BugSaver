@@ -2,6 +2,7 @@ package com.rudenkoInc.dao.transactionDao.impl;
 
 import com.rudenkoInc.dao.transactionDao.TransactionManager;
 import com.rudenkoInc.dao.workToDoInterface.UnitOfWork;
+import recordImpl.Record;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -21,7 +22,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     public static Connection getConnection() {
 
-        if(conn == null) {
+
             try {
                 Class.forName(ORACLE_DRIVER);
             } catch (ClassNotFoundException e) {
@@ -37,12 +38,6 @@ public class TransactionManagerImpl implements TransactionManager {
             }
 
             return conn;
-
-        } else {
-            return conn;
-        }
-
-
     }
 
     @Override

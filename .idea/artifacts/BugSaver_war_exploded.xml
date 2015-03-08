@@ -10,6 +10,8 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="ojdbc6" />
           <element id="library" level="project" name="gr3_st1_Rudenko_ErrorsRegistrationJournal" />
+          <element id="library" level="project" name="javax.servlet.jsp.jstl-1.2.1" />
+          <element id="library" level="project" name="jstl-1.2" />
         </element>
       </element>
     </root>

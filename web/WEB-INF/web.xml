@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-
     <servlet>
         <servlet-name>addBugController</servlet-name>
         <servlet-class>com.rudenkoInc.servlet.AddBugController</servlet-class>
@@ -12,6 +11,14 @@
     <servlet-mapping>
         <servlet-name>addBugController</servlet-name>
         <url-pattern>/addBug.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>showBugsController</servlet-name>
+        <servlet-class>com.rudenkoInc.servlet.ShowBugsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showBugsController</servlet-name>
+        <url-pattern>/showBug.do</url-pattern>
     </servlet-mapping>
 
 </web-app>
